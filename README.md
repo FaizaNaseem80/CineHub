@@ -1,74 +1,102 @@
 
-<img src="./src/assets/CineCanvas_white_bg.png" alt="CineCanvas Logo"/> 
+# CineHub
 
+CineHub is a modern web application that allows users to explore, discover, and track movies and TV shows. It provides an intuitive interface, rich media content, and personalized recommendations to enhance the movie-watching experience.
 
+---
 
+## Features
 
+- **Browse Movies & TV Shows**: Search and explore a wide range of movies and TV series.
+- **Detailed Information**: Access detailed information including synopsis, cast, ratings, and release dates.
+- **Favorites & Watchlist**: Save your favorite movies and manage a personal watchlist.
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices.
+- **External API Integration**: Fetches real-time movie data from external APIs.
 
-[**Cinecanvas**](https://cinecanvas.pages.dev/)
- is a fast, modern movie‑browsing web app built with Vite and React, styled using Tailwind CSS and shadcn/ui, integrated with TMDB and VidSrc APIs for metadata and streaming embeds, and deployed on Cloudflare Pages for global performance.
-<p align="center">
-  <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"/> 
-  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React"/> 
-  <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS"/> 
-  <img src="https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white" alt="Cloudflare"/> 
-  <a href="https://developers.themoviedb.org/4/"><img src="https://img.shields.io/badge/TMDB_API-v4-blue?logo=themoviedatabase&logoColor=fff" alt="TMDB API"/></a> 
-  <a href="https://vidsrc.icu/"><img src="https://img.shields.io/badge/VidSrc-Embed%20Streaming-informational" alt="VidSrc API"/></a> 
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?logo=mit&logoColor=000" alt="License"/></a>
-</p>
+---
 
+## Technologies Used
 
-## Features  
-- **Search & Discovery**: Browse and search movies/TV shows via the TMDB API, which offers a community‑driven database of over 800,000 films and 150,000 TV shows with images and credits. 
-- **Streaming Embeds**: Seamlessly embed trailers and previews using VidSrc’s free streaming API, providing responsive, auto‑updated, high‑quality links via simple REST endpoints.  
-- **Responsive UI**: Utility‑first design with Tailwind CSS, combining low‑level, single‑purpose classes for rapid, custom styling directly in markup.  
-- **Accessible Components**: UI primitives and patterns from shadcn/ui accelerate accessible React component assembly on top of Tailwind.  
-- **Blazing Fast HMR**: Vite’s Hot Module Replacement updates modules in‑place without full reloads, preserving state and boosting developer productivity.  
-- **Global Edge Deployment**: Hosted on Cloudflare Pages for instant, Git‑driven builds, automatic HTTPS, and edge caching across 275+ cities.  
+- **Frontend**: HTML, CSS, JavaScript, React (or your frontend framework)
+- **Backend**: Node.js / Express (or your backend framework)
+- **Database**: MongoDB / Firebase (or your database)
+- **APIs**: The Movie Database (TMDb) API for movie information
 
+---
 
-> [!NOTE]
-> Use Ad Blockers or Brave Browser for better experience
+## Installation
 
-## Technology Stack  
+1. **Clone the repository**
 
-### Vite  
-Vite is a next‑generation build tool offering instant server start, on‑demand ESM, and lightning‑fast Hot Module Replacement.  
+   ```bash
+   git clone https://github.com/FaizaNaseem80/CineHub.git
+   cd CineHub
+````
 
-### React  
-React is a declarative JavaScript library for building reusable UI components, making complex UIs easier to reason about and maintain.  
+2. **Install dependencies**
 
-### Tailwind CSS  
-Tailwind CSS is a utility‑first framework that provides low‑level, composable classes for styling without opinionated defaults.  
+   ```bash
+   npm install
+   ```
 
-### shadcn/ui  
-shadcn/ui delivers a suite of accessible, theme‑aware React components built on top of Tailwind, streamlining UI development.  
+3. **Start the development server**
 
-### TMDB API  
-The Movie Database (TMDb) API supplies extensive metadata—images, synopses, cast, and crew—to power search, discovery, and detail pages.  
+   ```bash
+   npm run dev
+   ```
 
-### VidSrc API  
-VidSrc offers a lightweight video‑streaming API and embed URLs for movies and episodes, updating links automatically for optimal quality.  
+4. Open [http://localhost:5173](http://localhost:5173) in your browser to view the application.
 
-### Cloudflare Pages  
-Cloudflare Pages is a JAMstack platform that deploys static and full‑stack applications to Cloudflare’s global network with zero‑config Git integration.  
+---
 
+## Usage
 
-## Installation  
-```bash
-git clone https://github.com/Optimized-Brain/Cinecanvas.git  
-cd Cinecanvas  
-npm install  
-```  
+* Use the search bar to find movies or TV shows.
+* Click on any title to view detailed information.
+* Add items to your favorites or watchlist for easy access later.
 
-## Configuration   
-  Add your `TMDB_API_KEY` and any VidSrc credentials.  
+---
 
-## Usage  
-```bash
-npm run dev
-```  
-Open [http://localhost:5173](http://localhost:5173) to explore Cinecanvas locally.   
+## Contributing
 
-## License  
-This project is licensed under the **MIT License**—see the [LICENSE](LICENSE) file for details.  
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+
+2. Create a new branch:
+
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+
+3. Make your changes and commit:
+
+   ```bash
+   git commit -m "Add new feature"
+   ```
+
+4. Push to your branch:
+
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+
+5. Open a pull request on GitHub.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contact
+
+For questions or feedback, you can reach out to the project maintainer:
+
+* **Name**: Faiza Naseem
+* **GitHub**: https://github.com/FaizaNaseem80
+* **Email**: faizanaseem873@example.com
+
+```
