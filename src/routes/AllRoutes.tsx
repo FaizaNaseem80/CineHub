@@ -8,6 +8,9 @@ import SplashScreen from "@/components/SplashScreen"
 import AuthPage from "@/components/Auth";
 import { Route, Routes } from "react-router"
 import AdminPage from "@/components/Admin"
+import UserPage from "@/components/User"
+import { User } from "lucide-react"
+
 
 const AllRoutes = () => {
   return (
@@ -21,8 +24,7 @@ const AllRoutes = () => {
       <Route path="/TVShows" element={<TVShowList />} />
     <Route path="/Admin" element={<AdminPage />} />
 <Route path="/auth" element={<AuthPage />} />
-
-      {/* Search & Players */}
+<Route path="/user" element={<UserPage/>}></Route>
       <Route path="/search/:searchName" element={<SearchList />} />
       <Route path="/player/:playerId" element={<Player />} />
       <Route path="/tvplayer/:tvplayerId" element={<TVPlayer />} />

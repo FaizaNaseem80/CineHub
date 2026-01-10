@@ -12,7 +12,7 @@ import GenreCategory from './admin/GenreCategory';
 import UserManagement from './admin/UserManagement';
 import DashboardOverview from './admin/DashboardAdmin';
 
-const Admin = () => {
+export const Admin = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [activeTab, setActiveTab] = useState('Dashboard');
   const [isDarkMode, setIsDarkMode] = useState(true);

@@ -103,7 +103,7 @@ const Navbar = () => {
             <ThemeToggle />
             <Bell className="w-5 h-5 cursor-pointer hover:text-red-600 transition-colors hidden sm:block" />
             <div
-              onClick={() => navigate("/Auth")}
+              onClick={() => navigate("/auth")}
               className="w-9 h-9 rounded bg-red-600 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform shadow-red-600/20 shadow-lg"
             >
               <User className="w-5 h-5 text-white" />

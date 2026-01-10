@@ -1,118 +1,100 @@
 import { useState } from "react";
+import { login, signup } from "../services/authApi";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleValidation = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
-    if (!email.includes("@")) {
-      setError("Please enter a valid email.");
-      return;
+    try {
+      if (isLogin) {
+        const data = await login(email, password);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        // Redirect Logic
+        if (email === "adminCineHub@gmail.com") {
+          window.location.href = "/admin"; // Make sure this route exists in App.tsx
+        } else {
+          window.location.href = "/user";  // Make sure this route exists in App.tsx
+        }
+      } else {
+        await signup(name, email, password);
+        alert("Signup successful! Please sign in.");
+        setIsLogin(true);
+      }
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-
-    if (password.length < 6) {
-      setError("Your password must contain between 6 and 60 characters.");
-      return;
-    }
-
-    console.log("Form is valid! Proceeding...");
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center font-sans relative overflow-hidden bg-gray-100 dark:bg-black transition-colors">
-      {/* Background Gradient & Blur for cinematic dark mode */}
-      <div className="absolute inset-0 dark:bg-gradient-to-b dark:from-black/90 dark:via-black/70 dark:to-black/90 dark:block" />
-
-    
-
-      {/* Form Card */}
-      <div className="relative z-10 w-full max-w-[450px] rounded-xl p-10 sm:p-16 shadow-2xl dark:shadow-black/80 bg-white dark:bg-gray-900/90 text-black dark:text-white transform transition-transform hover:scale-105">
-        <h2 className="text-3xl font-bold mb-8 text-center">
-          {isLogin ? "Sign In" : "Sign Up"}
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-black p-4">
+      <div className="w-full max-w-[400px] bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl">
+        <h2 className="text-3xl font-bold text-center mb-8 dark:text-white">
+          {isLogin ? "Sign In" : "Register"}
         </h2>
 
-        <form className="space-y-4" onSubmit={handleValidation}>
+        <form onSubmit={handleAuth} className="space-y-5">
           {!isLogin && (
             <input
               type="text"
               placeholder="Full Name"
-              className="w-full px-5 py-4 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-red-600 outline-none transition-all"
+              className="w-full p-4 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-red-600"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
             />
           )}
 
           <input
             type="email"
+            placeholder="Email Address"
+            className="w-full p-4 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-red-600"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email or phone number"
-            className={`w-full px-5 py-4 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 outline-none focus:ring-2 ${
-              error && !email.includes("@")
-                ? "border-b-2 border-orange-500"
-                : "focus:ring-red-600"
-            }`}
+            required
           />
 
-          <div>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className={`w-full px-5 py-4 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 outline-none focus:ring-2 ${
-                error && password.length < 6
-                  ? "border-b-2 border-orange-500"
-                  : "focus:ring-red-600"
-              }`}
-            />
-            {error && (
-              <p className="text-orange-500 text-xs mt-2 ml-1 animate-pulse">
-                {error}
-              </p>
-            )}
-          </div>
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full p-4 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-red-600"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
 
           <button
             type="submit"
-            className="w-full py-4 mt-6 rounded bg-red-600 hover:bg-red-700 text-white font-bold text-lg active:scale-95 transition-all shadow-lg dark:shadow-black/40"
+            disabled={loading}
+            className="w-full py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50"
           >
-            {isLogin ? "Sign In" : "Sign Up"}
+            {loading ? "Please wait..." : isLogin ? "Login" : "Create Account"}
           </button>
         </form>
 
-        <div className="flex justify-between items-center text-sm mt-4 text-gray-600 dark:text-gray-400">
-          <label className="flex items-center cursor-pointer">
-            <input type="checkbox" className="mr-2 w-4 h-4 accent-red-600" />
-            Remember me
-          </label>
-          <span className="hover:underline cursor-pointer">Need help?</span>
-        </div>
-
-        <div className="mt-16 text-center">
-          <p className="text-gray-700 dark:text-gray-400 text-lg">
-            {isLogin ? "New to CineHub?" : "Already a member?"}{" "}
-            <button
-              onClick={() => {
-                setIsLogin(!isLogin);
-                setError("");
-              }}
-              className="text-black dark:text-white hover:underline font-semibold"
-            >
-              {isLogin ? "Sign up now" : "Sign in"}
-            </button>
-          </p>
-
-          <p className="text-xs text-gray-600 dark:text-gray-500 mt-6 leading-tight">
-            This page is protected by Google reCAPTCHA to ensure you're not a bot.
-            <span className="text-blue-600 hover:underline ml-1 cursor-pointer">
-              Learn more.
-            </span>
-          </p>
-        </div>
+        <p className="mt-6 text-center text-gray-500">
+          {isLogin ? "New here?" : "Already have an account?"}{" "}
+          <button 
+            onClick={() => setIsLogin(!isLogin)} 
+            className="text-red-600 font-bold hover:underline"
+          >
+            {isLogin ? "Sign Up" : "Sign In"}
+          </button>
+        </p>
       </div>
     </div>
   );
